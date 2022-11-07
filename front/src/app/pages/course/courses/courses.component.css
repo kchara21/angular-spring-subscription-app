@@ -1,0 +1,25 @@
+table {
+    width: 97%;
+    margin: 0 auto;
+    margin-top: 1rem;
+}
+
+th.mat-sort-header-sorted {
+    color: black;
+}
+
+.table-button-row button {
+    margin: 12px;
+}
+
+.btn-new {
+    width: 20%;
+}
+
+.tableScroll {
+    height: 500px;
+    max-width: 97%;
+    overflow: auto;
+    margin: 0 auto;
+    margin-top: 1rem;
+}

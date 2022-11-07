@@ -1,0 +1,19 @@
+.register-form {
+    padding: 1rem 1rem;
+}
+
+.mat-card {
+    max-width: 300px;
+    margin: 2rem auto;
+    text-align: center;
+    height: 100%;
+}
+
+.full-width-input,
+button {
+    width: 100%;
+}
+
+.separator {
+    margin-bottom: 2rem;
+}

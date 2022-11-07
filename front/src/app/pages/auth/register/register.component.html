@@ -1,0 +1,90 @@
+<div class="register-form">
+  <mat-card>
+    <mat-card-content>
+      <h1>REGISTER</h1>
+
+      <form [formGroup]="_registerForm.baseForm">
+        <mat-form-field class="full-width-input separator">
+          <input
+            type="name"
+            matInput
+            formControlName="name"
+            placeholder="Name"
+            required
+          />
+
+          <mat-error *ngIf="checkField('name')">
+            {{ _registerForm.errorMessage }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input separator">
+          <input
+            type="lastname"
+            matInput
+            formControlName="lastname"
+            placeholder="Lastname"
+            required
+          />
+
+          <mat-error *ngIf="checkField('lastname')">
+            {{ _registerForm.errorMessage }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input separator">
+          <input
+            type="email"
+            matInput
+            formControlName="email"
+            placeholder="Email"
+            required
+          />
+
+          <mat-error *ngIf="checkField('email')">
+            {{ _registerForm.errorMessage }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input separator">
+          <input
+            [type]="hide ? 'password' : 'text'"
+            type="password"
+            matInput
+            formControlName="password"
+            placeholder="Clave"
+            required
+          />
+          <button mat-icon-button matSuffix (click)="hide = !hide">
+            <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+          </button>
+          <mat-error *ngIf="checkField('password')">
+            {{ _registerForm.errorMessage }}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="full-width-input separator">
+          <mat-label>Role</mat-label>
+          <mat-select formControlName="role" required>
+            <mat-option *ngFor="let role of userRoles" [value]="role">{{
+              role
+            }}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="checkField('role')">
+            {{ _registerForm.errorMessage }}
+          </mat-error>
+        </mat-form-field>
+
+        <button
+          [disabled]="_registerForm.baseForm.invalid"
+          (click)="onRegister()"
+          type="submit"
+          mat-raised-button
+          color="primary"
+        >
+          Register
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

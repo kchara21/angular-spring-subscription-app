@@ -1,0 +1,115 @@
+<div class="table-button-row" *ngIf="user?.['role'] === 'ROLE_CREATOR'">
+  <button
+    (click)="onOpenModalCourse()"
+    mat-flat-button
+    color="primary"
+    class="btn-new"
+  >
+    Agregar Curso
+  </button>
+</div>
+
+<div class="tableScroll">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by id"
+      >
+        No.
+      </th>
+      <td mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</td>
+    </ng-container>
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by title"
+      >
+        Title
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by description"
+      >
+        Description
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        sortActionDescription="Sort by status"
+      >
+        Status
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+
+    <!-- Actions Column for Consumer -->
+    <ng-container
+      matColumnDef="actions"
+      *ngIf="user?.['role'] === 'ROLE_CONSUMER'"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="table-button-row">
+          <button
+            mat-flat-button
+            color="accent"
+            (click)="onSuscribeCourse(element.id)"
+          >
+            Suscribe
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <!-- Actions Column for Creater -->
+    <ng-container
+      matColumnDef="actions"
+      *ngIf="user?.['role'] === 'ROLE_CREATOR'"
+    >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actions</th>
+      <td mat-cell *matCellDef="let element">
+        <div class="table-button-row">
+          <button
+            mat-flat-button
+            color="accent"
+            (click)="onOpenModalCourse(element)"
+          >
+            Edit
+          </button>
+
+          <!-- <button
+            mat-flat-button
+            color="warn"
+            (click)="onDeleteCourse(element.id)"
+          >
+            Delete
+          </button> -->
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
